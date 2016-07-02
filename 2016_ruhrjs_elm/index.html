@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+    <title>Elm - The Game Changer</title>
+
+		<meta name="description" content="An introductory presentation about Elm">
+		<meta name="author" content="Bastian Krol">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+    <style>
+
+      .reveal pre {
+        font-size: 0.65em;
+        /* line-height: 1.2em; */
+      }
+
+      .code-snippet {
+        display: block;
+        overflow-x: auto;
+        padding: 0.5em;
+        -webkit-text-size-adjust: none;
+        background: #f9f9f9;
+        color: #0a0a0a;
+      }
+
+      // width: (columns x 80px) - 20px
+      .reveal .span1  { width:  60px; }
+      .reveal .span2  { width: 140px; }
+      .reveal .span3  { width: 220px; }
+      .reveal .span4  { width: 300px; }
+      .reveal .span5  { width: 380px; }
+      .reveal .span6  { width: 460px; }
+      .reveal .span7  { width: 540px; }
+      .reveal .span8  { width: 620px; }
+      .reveal .span9  { width: 700px; }
+      .reveal .span10 { width: 780px; }
+      .reveal .span11 { width: 860px; }
+      .reveal .span12 { width: 940px; }
+
+      .reveal .render-target {
+        height: 100px;
+        margin: 20px auto;
+        padding: 10px;
+        border: 3px solid gray;
+        text-align: left;
+      }
+
+      .reveal [class*="span"] {
+        float: left;
+        min-height: 1px;
+        margin-left: 20px;
+      }
+
+      h1.banner, h2.banner, h3.banner, h4.banner, p.banner, div.banner {
+        background-color: rgba(255, 255, 255, 0.3);
+        height: 1.3em;
+        color: #111;
+      }
+
+      button {
+        margin-top: 21px;
+        width: 150px;
+        height: 2em;
+        font-size: large;
+      }
+
+      .reveal .face {
+        display: block;
+        margin: 5px auto;
+        height: 180px;
+        width: 180px;
+        border: 0 solid white;
+        border-radius: 90px;
+      }
+
+      .reveal .codecentric-logo {
+        height: 2ex;
+        border: 0;
+        margin: 0;
+        background: none;
+        vertical-align: sub;
+        box-shadow: none;
+      }
+
+      p.attribution {
+        color: black;
+        font-size: 15px;
+      }
+
+      p.attribution.low {
+        margin-top: 250px;
+      }
+
+      p.attribution a {
+        color: black;
+      }
+
+      p.attribution a:hover {
+        color: #333;
+      }
+
+    </style>
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<h1>Elm</h1>
+          <h3>The Game Changer</h3>
+					<!--p>
+            <small>
+              <a href="https://twitter.com/bastiankrol"><i class="fa fa-github"></i> @bastiankrol</a><br>
+              <a href="https://github.com/basti1302"><i class="fa fa-twitter"></i> basti1302</a>
+            </small>
+					</p-->
+				</section>
+
+        <section>
+          <h2>Who's Talking?</h2>
+          <img src="images/bastian.png"
+               alt="Bastian Krol"
+               class="face">
+          <br>
+          <h3>Bastian Krol</h3>
+          Developer/Consultant at <a href="https://www.codecentric.de/"><img
+            src="images/codecentric-logo.png"
+            class="codecentric-logo"
+            alt="codecentric logo"></a><br>
+          <a href="https://twitter.com/bastiankrol"><i class="fa fa-twitter"></i> @bastiankrol</a><br>
+          <a href="https://github.com/basti1302"><i class="fa fa-github"></i> basti1302</a><br>
+          <a href="mailto:bastian.krol@codecentric.de"><i class="fa fa-envelope"></i> bastian.krol@codecentric.de</a><br>
+        </section>
+
+        <section>
+          <img src="images/codecentric-logo.png"
+            class="codecentric-logo"
+            style="width: 400px; height: initial;"
+            alt="codecentric logo">
+          <hr>
+          <div class="span6">
+            <ul>
+              <li>Software Development</li>
+              <li>Agile Coaching</li>
+              <li>Consulting</li>
+              <li>Continuous Delivery</li>
+              <li>Agile Software Factory</li>
+            </ul>
+          </div>
+          <div class="span6">
+            <ul>
+              <li>Software Architecture</li>
+              <li>DevOps</li>
+              <li>Performance Tuning</li>
+              <li>Big Data</li>
+              <li>Operations</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <img src="images/codecentric-logo.png"
+            class="codecentric-logo"
+            style="width: 400px; height: initial;"
+            alt="codecentric logo">
+          <hr>
+          <h3>We're hiring!</h3>
+          <div class="span6">
+            <ul>
+              <li>Karlsruhe</li>
+              <li>Stuttgart</li>
+              <li>Frankfurt</li>
+              <li>München</li>
+              <li>Berlin</li>
+            </ul>
+          </div>
+          <div class="span6">
+            <ul>
+              <li>Hamburg</li>
+              <li>Solingen</li>
+              <li>Düsseldorf </li>
+              <li>Münster</li>
+              <li>Dortmund</li>
+            </ul>
+          </div>
+          <span style="float: none;"></span>
+          <div style="display: inline-block; margin-top: 2ex; font-size: .7em;">
+            <a
+             href="https://www.codecentric.de/karriere/offene-stellen/"
+            >https://www.codecentric.de/karriere/offene-stellen/</a>
+          </div>
+        </section>
+
+				<section>
+					<h2>What is Elm</h2>
+          <ul>
+            <li>Purely Functional</li>
+            <li>Static Type System</li>
+            <li>Compiles to JavaScript</li>
+            <li>Open Source</li>
+            <li>Makes Web Development Delightful</li>
+          </ul>
+				</section>
+
+
+
+        <!--
+        ========================================================================
+        EVANGELISM
+        ========================================================================
+        -->
+
+				<section>
+					<h1>Why Bother?</h1>
+				</section>
+
+				<section>
+          <h2>Marketing Blurbs</h2>
+          <ul>
+            <li>Clean Syntax</li>
+            <li>No Runtime Exceptions</li>
+            <li>Friendly Compiler Error Messages</li>
+            <li>Blazing Fast Rendering</li>
+            <li>Libraries With SemVer Guarantees</li>
+            <li>Smooth JavaScript Interop</li>
+          </ul>
+          <aside class="notes">
+            KEEP IT SHORT HERE!<br>
+            Just an overview
+          </aside>
+				</section>
+
+        <section data-background="images/bug.jpg">
+          <h2 class="banner">Reduce Bug Hunting</h2>
+          <p class="attribution low">
+            <a href="https://www.flickr.com/photos/nestorferraro/16904621856/">Bug</a>
+            by <a href="https://www.flickr.com/photos/nestorferraro/">Nestor Ferraro</a> /
+            <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>
+          </p>
+          <aside class="notes">
+            <ul>
+              <li>We all spend a lot of time hunting bugs</li>
+              <li>Even with tests/TDD</li>
+              <li>Runtime Errors happen</li>
+              <li>Some errors are very hard to track</li>
+              <li>Can we make this better?</li>
+              <li>Yes, with Elm</li>
+              <li>Several Reasons</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background="images/ocean.jpg">
+          <h2 class="banner">Everything is Stateless</h2>
+          <p class="attribution low">
+            &nbsp;
+          </p>
+          <aside class="notes">
+            <ul>
+              <li>Much easier to reason about code</li>
+              <li>Values in, values out</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background="images/carved_in_stone.jpg">
+          <h2 class="banner">Everything is Immutable</h2>
+          <p class="attribution low">
+            <a href="https://www.flickr.com/photos/gingerfox/8262755220/">Carved Stone"</a>
+            by <a href="https://www.flickr.com/photos/gingerfox/">Kit Carruthers</a> /
+            <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC BY 2.0</a>
+          </p>
+          <aside class="notes">
+            <ul>
+              <li>Why has that value changed?</li>
+              <li>Values simply never change</li>
+              <li>Copy, Modify</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-background="images/swat.jpg">
+          <h2 class="banner">Compiler catches 90%</h2>
+          <p class="attribution low">
+            <a href="https://www.flickr.com/photos/marcdalio/8246879758/">swat</a>
+            by <a href="https://www.flickr.com/photos/marcdalio/">Marc Dalio</a> /
+            <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">CC BY-NC-ND 2.0</a>
+          </p>
+        </section>
+
+        <section data-background="images/old_woman.jpg">
+          <h2>Ancient Elm Proverb</h2>
+          <blockquote style="color: black">
+            Once it compiles, it just works!
+          </blockquote>
+          <!--
+          Background:
+          https://pixabay.com/en/old-woman-desert-old-age-bedouin-574278/
+          CC0 Public Domain
+          by jarmoluk
+          https://pixabay.com/en/users/jarmoluk-143740/
+          -->
+          <aside class="notes">
+            Once it compiles, it typically works on the first try,
+            no runtime errors, no regressions.
+        </section>
+
+        <section>
+          <h2>Semver Guarantees</h2>
+          <ul>
+            <li>Change public API of library</li>
+            <li>Try to publish as minor/bugfix</li>
+            <li>=&gt;Nope</li>
+            <li>Powered by Static Typing</li>
+          </ul>
+        </section>
+
+
+        <!--
+        ========================================================================
+        SYNTAX BASICS
+        ========================================================================
+        -->
+
+				<section>
+					<h1>Let's See Some Code</h1>
+          <aside class="notes">
+            Do not try to introduce concepts like Elm architecture here, just
+            basic syntax like functions, data structures, List.map etc.
+          </aside>
+				</section>
+
+        <!-- Hello World -->
+				<section>
+					<h2>Hello World</h2>
+          <div class="span8">
+            <strong>Elm</strong>
+            <pre><code class="code-snippet" data-trim contenteditable
+>import Html
+
+main = Html.text "Hello Bochum!"
+</code></pre>
+          </div>
+          <div class="span4">
+            <strong>Result</strong>
+            <div id="elm-example-01" class="render-target" style="height: 65px">
+              <img src="images/loading.gif">
+            </div>
+          </div>
+          <aside class="notes">
+            <h1>MAIN SCREEN</h1>
+          </aside>
+				</section>
+
+        <!-- Functions -->
+				<section>
+          <h2>Functions</h2>
+          <div class="span8">
+            <strong>Elm</strong>
+            <pre><code class="code-snippet" data-trim contenteditable
+>import Html
+
+greet str = Html.text str
+
+main =
+  greet "Hello Bochum!"
+</code></pre>
+          </div>
+          <div class="span4">
+            <strong>Result</strong>
+            <div id="elm-example-02" class="render-target" style="height: 145px">
+              <img src="images/loading.gif">
+            </div>
+          </div>
+          <aside class="notes">
+            <h1>MAIN SCREEN</h1>
+          </aside>
+				</section>
+
+        <!-- Type Annotations -->
+				<section>
+					<h2>Type Annotations</h2>
+          <div class="span8">
+            <strong>Elm</strong>
+            <pre><code class="code-snippet" data-trim contenteditable
+>import Html exposing (Html)
+
+greet : String -&gt; Html a
+greet str =
+  Html.text str
+
+main : Html a
+main =
+  greet "Hello Bochum!"
+</code></pre>
+          </div>
+          <div class="span4">
+            <strong>Result</strong>
+            <div id="elm-example-03" class="render-target" style="height: 235px">
+              <img src="images/loading.gif">
+            </div>
+          </div>
+          <aside class="notes">
+            <h1>MAIN SCREEN</h1>
+            <ul>
+              <li>Explicit Annotations versus Inference</li>
+              <li>Style/Best Practices</li>
+            </ul>
+          </aside>
+				</section>
+
+        <!-- Parameter Types versus Return Types -->
+        <!-- REMOVED TO SHORTEN FOR RUHR.JS -->
+        <!--
+				<section>
+					<h2>Parameter Types &amp; Return Types</h2>
+          <div class="span8">
+            <strong>Elm</strong>
+            <pre><code class="code-snippet" data-trim contenteditable
+>import Html exposing (Html)
+import String
+
+greet : Int -&gt; String -&gt; Html a
+greet number string =
+  Html.text
+    (String.repeat number string)
+
+main : Html a
+main =
+  greet 3 "Hello Bochum! "
+</code></pre>
+          </div>
+          <div class="span4">
+            <strong>Result</strong>
+            <div id="elm-example-04" class="render-target" style="height: 285px">
+              <img src="images/loading.gif">
+            </div>
+          </div>
+          <aside class="notes">
+            <h1>MAIN SCREEN</h1>
+            <ul>
+              <li>Pure!</li>
+              <li>No side effects</li>
+              <li>All data is immutable</li>
+              <li>Partial Function Application?</li>
+            </ul>
+          </aside>
+				</section>
+        -->
+
+        <!-- REMOVED TO SHORTEN FOR RUHR.JS -->
+        <!--
+				<section>
+          <h2>Function Application<br><small>aka Data Pipelines</small></h2>
+
+          <div class="span8">
+            <strong>Elm</strong>
+            <pre><code class="code-snippet" data-trim contenteditable
+>greet : Int -&gt; String -&gt; Html a
+greet number string =
+  string
+    |&gt; String.repeat number
+    |&gt; Html.text
+
+main : Html a
+main =
+  greet 3 "Hello Bochum! "
+</code></pre>
+          </div>
+          <div class="span4">
+            <strong>Result</strong>
+            <div id="elm-example-05" class="render-target" style="height: 230px">
+              <img src="images/loading.gif">
+            </div>
+          </div>
+          <aside class="notes">
+            <h1>MAIN SCREEN</h1>
+            <ul>
+              <li>Picture: Pipeline of transformers</li>
+              <li>Actually: Function Application</li>
+              <li>Also: Function Composition (&gt;&gt;/&lt;&lt;)</li>
+            </ul>
+          </aside>
+				</section>
+        -->
+
+
+        <!--
+        ========================================================================
+        USER INTERACTION
+        &
+        THE ELM ARCHITECTURE
+        ========================================================================
+        -->
+
+				<section>
+          <!--h3 style="text-decoration: line-through">Functional Reactive Programming</h3-->
+          <h1>User Interaction</h1>
+					<h3>in Elm</h3>
+				</section>
+
+				<section>
+					<h2>User Interaction (1/4)</h2>
+          <strong>A very simple Elm app</strong>
+          <div id="elm-example-09" class="render-target" style="height: 285px">
+            <img src="images/loading.gif">
+          </div>
+        </section>
+
+				<section>
+					<h2>User Interaction (2/4)</h2>
+          <strong>Model</strong>
+          <pre><code class="code-snippet" data-trim contenteditable
+>type alias Model = Int
+
+model : Model
+model = 0
+
+type Msg = Increment | Decrement
+</code></pre>
+          <aside class="notes">
+          </aside>
+				</section>
+
+				<section>
+					<h2>User Interaction (3/4)</h2>
+          <strong>View</strong>
+          <pre><code class="code-snippet" data-trim contenteditable
+>view : Model -&gt; Html Msg
+view model =
+  div []
+    [ div [] [ text (toString model) ]
+    , button [ onClick Decrement ] [ text "-" ]
+    , button [ onClick Increment ] [ text "+" ]
+    ]
+</code></pre>
+          <aside class="notes">
+          </aside>
+				</section>
+
+				<section>
+					<h2>User Interaction (4/4)</h2>
+          <strong>Update</strong>
+          <pre><code class="code-snippet" data-trim contenteditable
+>update : Msg -&gt; Model -&gt; Model
+update msg model =
+  case msg of
+    Increment -&gt; model + 1
+    Decrement -&gt; model - 1
+</code></pre>
+          <aside class="notes">
+          </aside>
+				</section>
+
+        <section>
+          <h2>This is the Elm Architecture</h2>
+          <ul>
+            <li><strong>Model</strong> (just a type)</li>
+            <li><strong><code>view</code></strong>: Model -&gt; Html Msg</li>
+            <li><strong><code>update</code></strong>: Msg -&gt; Model -&gt; Model</li>
+          </ul>
+          <p><strong>That's all there is.</strong></p>
+          <p><small>(nearly)</small></p>
+        </section>
+
+        <section>
+        	<h2>Elm Architecture Overview</h2>
+          <img src="images/architecture_inverted.png" style="border: none; box-shadow: none;">
+        </section>
+
+				<section>
+          <h2>But What About Side Effects?</h2>
+          <ul>
+            <li>AJAX</li>
+            <li>WebSockets</li>
+            <li>Randomness</li>
+            <li>...</li>
+          </ul>
+          <aside class="notes">
+            <p>Problem: How do we communicate with the world
+              outside Elm in when everything is purely functional?
+              How do we manage <em>side effects</em>?
+            </p>
+          </aside>
+				</section>
+
+        <section>
+          <h2>The Complete Elm Architecture.</h2>
+          <ul>
+            <li><strong style="color: red;">Commands</strong> (<code>Cmd</code>)</li>
+            <li><strong style="color: red;">Subscriptions</strong>  (<code>Sub</code>)</li>
+            <li>Model</li>
+            <li><code>view</code></strong>: Model -&gt; Html Msg</li>
+            <li><code>update</code></strong>: Msg -&gt; Model -&gt; <strong>(Model, Cmd Msg)</strong></li>
+          </ul>
+        </section>
+
+        <!--
+        ========================================================================
+        ELM COMPILER MESSAGES
+        AND
+        COMPILE TIME ERROR > RUNTIME EXCEPTION
+        ========================================================================
+        -->
+        <section data-background="images/the_dog_and_his_man.jpg">
+          <h1 class="banner" style="height: 2.3em">The Elm Compiler is Your Friend</h1>
+          <p class="banner">...and the type system, too</p>
+          <p class="attribution" style="color: white">
+            <a style="color: white" href="https://www.flickr.com/photos/icstefanescu/14107384014/">The dog and his man</a>
+            by <a style="color: white" href="https://www.flickr.com/photos/icstefanescu/">C. I. Ştefănescu</a> /
+            <a style="color: white" href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>
+          </p>
+				</section>
+
+        <section>
+          <h2>Typos</h2>
+          <pre><code class="code-snippet" data-trim contenteditable
+>myFunction str =
+  String.repeat 3 str
+
+main =
+  Html.text (myFunctino "Elm")
+</code></pre>
+          <div class="fragment">
+            <pre><code class="code-snippet" data-trim contenteditable style="text-size: small"
+>-- NAMING ERROR ----------------------- errors/Spelling.elm
+
+Cannot find variable `myFunctino`
+
+9│   Html.text (myFunctino "Elm")
+                ^^^^^^^^^^
+Maybe you want one of the following?
+
+    myFunction
+</code></pre>
+          </div>
+          <aside class="notes">
+            <h1>MAIN SCREEN</h1>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Type Mismatch</h2>
+					<pre><code class="code-snippet" data-trim contenteditable
+>subMismatch =
+{ name = "Alice", age = 24 } == { name = "Bob", age = "30" }
+</code></pre>
+          <div class="fragment">
+            <pre><code class="code-snippet" data-trim contenteditable style="text-size: small"
+>-- TYPE MISMATCH --------------------- errors/SubMismatch.elm
+
+The right argument of (==) is causing a type mismatch.
+
+2│ { name = "Alice", age = 24 } == { name = "Bob", age = "30" }
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(==) is expecting the right argument to be a:
+
+    { ..., age : number }
+
+But the right argument is:
+
+    { ..., age : String }
+</code></pre>
+          </div>
+          <aside class="notes">
+            <h1>MAIN SCREEN</h1>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Forgot a Case?</h2>
+          <pre><code class="code-snippet" data-trim contenteditable>
+type Colour = Red | Green | Blue
+
+colourToHex : Colour -&gt; String
+colourToHex colour =
+  case colour of
+    Red   -&gt; "#f00"
+    Green -&gt; "#0f0"
+</code></pre>
+          <aside class="notes">
+            <h1>MAIN SCREEN</h1>
+          </aside>
+        </section>
+        <section>
+          <h2>Forgot a Case?</h2>
+          <pre><code class="code-snippet" data-trim contenteditable style="text-size: small"
+>-- MISSING PATTERNS --------------- errors/ForgottenCase.elm
+
+This `case` does not have branches for all possibilities.
+
+5│&gt;  case colour of
+6│&gt;    Red   -&gt; "#f00"
+7│&gt;    Green -&gt; "#0f0"
+
+You need to account for the following values:
+
+    Blue
+
+Add a branch to cover this pattern!
+</code></pre>
+          <aside class="notes">
+            <h1>MAIN SCREEN</h1>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Runtime Exceptions?</h2>
+          <strong>JavaScript</strong>
+          <pre><code class="code-snippet" data-trim contenteditable
+>function repeatFirst(list) {
+  var repeated = list[0].repeat(3);
+  alert(repeated);
+}
+</code></pre>
+          <div class="fragment">
+            <div class="span8">
+              <pre><code class="code-snippet" data-trim contenteditable
+>var list1 =
+  [ 'hip', 'hop', 'hooray!' ];
+...
+repeatFirst(list1);
+  </code></pre>
+            </div>
+            <div class="span4">
+              <button id="run-javascript-1">Run</button>
+            </div>
+          </div><!-- .fragment -->
+
+          <div class="fragment">
+            <div class="span8">
+              <pre><code class="code-snippet" data-trim contenteditable
+>var list2 = [];
+...
+repeatFirst(list2);
+  </code></pre>
+            </div>
+            <div class="span4">
+              <button id="run-javascript-2">Run</button>
+            </div>
+          </div><!-- .fragment -->
+          <aside class="notes">
+            <h1>MAIN SCREEN</h1>
+            Would be the same in CoffeeScript, TypeScript...
+          </aside>
+        </section>
+
+        <script>
+          (function() {
+            function repeatFirst(list) {
+              var repeated = list[0].repeat(3);
+              alert(repeated);
+            }
+
+            var list1 = [ 'hip', 'hop', 'hooray!' ];
+            var list2 = [];
+
+            document.getElementById('run-javascript-1').onclick = function() {
+              repeatFirst(list1);
+            };
+
+            document.getElementById('run-javascript-2').onclick = function() {
+              repeatFirst(list2);
+            };
+          })();
+        </script>
+
+        <section>
+          <h2>Compile Time &gt; Runtime</h2>
+					<pre><code class="code-snippet" data-trim contenteditable
+>repeatFirst list =
+  let elem = List.head list
+  in String.repeat 3 elem
+</code></pre>
+          <div class="fragment">
+            <pre><code class="code-snippet" data-trim contenteditable style="text-size: small"
+>&gt; elm-make RepeatFirst.elm --output repeat-first.html
+-- TYPE MISMATCH -------------------------- RepeatFirst.elm
+
+The 2nd argument to function repeat is causing a mismatch.
+
+8│      String.repeat 3 elem
+                        ^^^^
+Function `repeat` is expecting the 2nd argument to be:
+    String
+But it is:
+    Maybe a
+
+Hint: I always figure out the type of arguments from left
+to right. If an argument is acceptable when I check it, I
+assume it is "correct" in subsequent checks. So the problem
+may actually be in how previous arguments interact with the
+2nd.
+</code></pre>
+          </div><!-- .fragment -->
+          <aside class="notes">
+            <h1>MAIN SCREEN</h1>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Corrected Version</h2>
+					<pre><code class="code-snippet" data-trim contenteditable
+>repeatFirst list =
+  let
+    maybeElem = List.head list
+    elem = Maybe.withDefault "" maybeElem
+  in
+    String.repeat 3 elem
+</code></pre>
+          <div class="fragment">
+            <pre><code class="code-snippet" data-trim contenteditable style="text-size: small"
+>&gt; elm-make RepeatFirst.elm --output repeat-first.html
+Success! Compiled 1 modules.
+Successfully generated repeat-first.html
+</code></pre>
+          </div><!-- .fragment -->
+          <aside class="notes">
+            <h1>MAIN SCREEN</h1>
+          </aside>
+        </section>
+
+				<section>
+					<h2>Protection From Runtime Exceptions</h2>
+          <img src="images/baby-water-balloon-faceplant.gif"
+               style="border: none; box-shadow: none;">
+				</section>
+
+        <!--
+        - Unpure Actions/Side Effects (like AJAX) via Commands (out of scope)
+       -->
+
+        <!--
+        TODO
+        ====
+
+        ## Elm Architecture
+        - show picture!!
+        - show individual parts (view, update, init) as short simplified examples
+        - ?!?!? Signal.foldp
+
+        ## Reactivity
+        - Signal Picture!
+        - Mouse position example
+
+        ## MISC TOPICS
+        - Elm versus React - both use virtual DOM
+        - show TodoMVC performance comparison
+        - Talk to JavaScript via ports
+
+        ## TOOLING
+        - Elm Reactor - short showcase
+
+        OPTIONAL
+        - elm-package manager
+        - elm-repl
+
+        OUT OF SCOPE
+        - Tasks
+        -->
+
+
+
+        <!--
+        ========================================================================
+        WRAP IT UP
+        ========================================================================
+        -->
+
+				<section>
+					<h2>Summary</h2>
+          <ul>
+            <li><em>No runtime exceptions!</em></li>
+            <li>Refactoring is <em>easy</em> and <em>safe</em></li>
+            <li>Coherent approach to user interaction</li>
+            <li><em>Fast</em> rendering</li>
+            <li>Can be introduced into <em>existing</em> JS code bases</li>
+            <li>Uniform Structure for Apps (Elm Architecture)</li>
+          </ul>
+          <aside class="notes">
+            Use Cases:
+            <ul>
+              <li>Helps tremendously with refactoring, so any code base that might change...</li>
+              <li>Green Field Projects</li>
+              <li>New Parts in existing projects</li>
+              <li>Replace/Create single widgets in larger JS projects</li>
+              <li>SPAs</li>
+              <li>MPAs</li>
+            </ul>
+          </aside>
+				</section>
+
+        <section data-background="images/happy-tangled.gif">
+          <h1>Q. E. D.</h1>
+          <h2 class="banner">Elm Makes</h2>
+          <h2 class="banner">Web Development</h2>
+          <h2 class="banner">Delightful</h2>
+          <p class="banner">... and it's changing the frontend game right now</p>
+          <p class="attribution">
+            &nbsp;
+          </p>
+        </section>
+
+        <section>
+          <h2>Links:</h2>
+          <ul>
+            <li><a href="http://elm-lang.org/">http://elm-lang.org/</a></li>
+            <li><a href="http://elm-lang.org/examples/">Online Editor/Sandbox</a></li>
+            <li><a href="https://blog.codecentric.de/en/2015/11/elm-friday-table-of-contents/">Elm Friday (Tutorial/Blog Series)</a></li>
+					</ul>
+        </section>
+
+        <section>
+          <h2>Questions?</h2>
+          <h2>Thank You!</h2>
+
+          <hr>
+
+          <a href="https://twitter.com/bastiankrol"><i class="fa fa-twitter"></i> @bastiankrol</a><br>
+          <a href="https://github.com/basti1302"><i class="fa fa-github"></i> basti1302</a><br>
+          <a href="mailto:bastian.krol@codecentric.de"><i class="fa fa-envelope"></i> bastian.krol@codecentric.de</a><br>
+          <a href="https://www.codecentric.de/"><img
+            src="images/codecentric-logo.png"
+            class="codecentric-logo"
+            alt="codecentric logo"></a><br>
+
+          <!--p>
+            <small>
+              <a href="https://twitter.com/bastiankrol"><i class="fa fa-github"></i> @bastiankrol</a><br>
+              <a href="https://github.com/basti1302"><i class="fa fa-twitter"></i> basti1302</a>
+            </small>
+					</p-->
+        </section>
+
+        <!--
+				<section>
+					<h2>foldp &ndash; Keeping State</h2>
+          <div class="span8">
+            <strong>Elm</strong>
+					  <pre><code class="code-snippet" data-trim contenteditable
+>clickCount : Signal Int
+clickCount =
+  let
+    foldFn : () -&gt; Int -&gt; Int
+    foldFn click total = total + 1
+  in
+    Signal.foldp foldFn 0 Mouse.clicks
+
+main : Signal Html.Html
+main =
+  Signal.map toHtml clickCount</code></pre>
+          </div>
+          <div class="span4">
+            <strong>Result</strong>
+            <div id="elm-example-11" class="render-target" style="height: 240px">
+              <img src="images/loading.gif">
+            </div>
+          </div>
+				</section>
+        -->
+
+      </div> <!-- .slides -->
+    </div> <!-- .reveal -->
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+    <!-- Embed Elm examples into HTML -->
+    <script src="elm-examples.js"></script>
+    <script type="text/javascript">
+
+      (function() {
+        function pad2(num) {
+          var s = '0' + num;
+          return s.substr(s.length - 2);
+        }
+
+        var div;
+        var module;
+        for (var i = 1; i <= 99; i++) {
+          var num = pad2(i);
+          div = document.getElementById('elm-example-' + num);
+          module = Elm['Example' + num];
+          if (div && module) {
+            div.innerHTML = '';
+            module.embed(div);
+            console.log('Embedded Elm module Example' + num);
+          } else if (div) {
+            console.warn('There is a div for Example' + num + ' but no matching Elm module.');
+          } else if (module) {
+            console.warn('There is an Elm module Example' + num + ' but no matching div.');
+          }
+        }
+      })();
+    </script>
+	</body>
+</html>
